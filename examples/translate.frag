@@ -3,6 +3,7 @@ precision mediump float;
 #endif
 
 uniform vec2 u_resolution;
+uniform float u_time;
 
 float rectshape(vec2 position, vec2 scale) {
     scale = vec2(0.5) - scale * 0.5;
@@ -15,7 +16,7 @@ void main() {
     vec2 coord = gl_FragCoord.xy / u_resolution;
     vec3 color = vec3(0.0);
 
-    vec2 translate = vec2 (0.2, 0.5); //Try changing these values.
+    vec2 translate = vec2 (0.2 * sin(u_time), 0.5 * cos(u_time)); //Try changing these values.
     coord += translate * 0.5; //Divided in half for ease of use.
 
     color += vec3(rectshape(coord, vec2(0.3)));
